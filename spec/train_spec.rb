@@ -14,4 +14,17 @@ describe Train do
     train.save
     Train.all.should eq [train]
   end
+  it 'shows all the stations for a train' do
+    test_train = Train.new('Betsey Locomotive', 9)
+    test_train.save
+    test_train.get_stations.should eq "5 1 2 2014-03-19 04:00:00"
+  end
+
 end
+
+
+
+
+
+
+#SELECT * FROM stops WHERE station_id = (inputted by user) && train_id = (inputted_by_user); RETUR OBJECT display [time]
