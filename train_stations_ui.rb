@@ -38,7 +38,7 @@ def rider_menu
   when 'm'
     main_menu
   else rider_menu
-end
+  end
 
 
 end
@@ -68,20 +68,22 @@ def add_train_station
   puts 'The Station- ' +  Station.all[-1].name + ' has been added to the Directory of Stations'
   puts "\n\n"
 
-  station_result = Stops.find_station_id(new_station)
+  station_result = Station.find_station_id(new_station)
 
   puts "Type the name of a train that goes to this station:"
   train_name = gets.chomp
-# train_result =
-  Stops.find_trains_id(train_name)
+  train_result =
+  Train.find_train_id(train_name)
+
+
 
 
   puts "Type the time that the train passes through in the morning:"
   train_time = gets.chomp
 
 
-  # new_station =
-  Stops.new(train_result, station_result, train_time)
+  new_station =
+  Stop.new(train_result, station_result, train_time)
   new_station.save
 
 
@@ -113,9 +115,9 @@ def add_train_line
   when 'v'
     view_line
   else
+    main_menu
+  end
   main_menu
-end
-main_menu
 end
 
 def select_view
@@ -148,13 +150,13 @@ end
 
 def view_line
  #puts "These are all of the Trains:  Select a Train to View All Station Stops for that Line"
-    Train.all.each_with_index do |train, index|
-      puts "#{index+1}. #{train.name}"
-    end
-    puts "Type the number of the train that you would like to see the lines for:"
-    rider_selection = gets.chomp.to_i
-    current_train = Train.all[rider_selection-1]
-    current_train.get_stations
+ Train.all.each_with_index do |train, index|
+  puts "#{index+1}. #{train.name}"
+end
+puts "Type the number of the train that you would like to see the lines for:"
+rider_selection = gets.chomp.to_i
+current_train = Train.all[rider_selection-1]
+current_train.get_stations
 end
 
 

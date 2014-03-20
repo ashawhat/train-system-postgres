@@ -26,17 +26,27 @@ class Train
     self.name == another_train.name
   end
 
-  def get_stations
-    station_array = []
-    results = DB.exec("SELECT * FROM trains WHERE id = '#{@id}';")
-    results.each do |result|
-      puts result['id']
+  def find_train_id(train_name)
+    trains_id = nil
+    Train.all.each do |train|
+     if train.name == train_name
+      return trains_id = trains.id.to_i
     end
   end
+  trains_id
+end
+
+def get_stations
+  station_array = []
+  results = DB.exec("SELECT * FROM trains WHERE id = '#{@id}';")
+  results.each do |result|
+    puts result['id']
+  end
+end
     # results.each do
     #   get station id
     #   query stations table for name of that station (based on above id)
     #   store info into array
     #   return array
 
-end
+  end
